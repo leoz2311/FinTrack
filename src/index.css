@@ -1,0 +1,51 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 210 35% 96%;
+    --foreground: 218 35% 12%;
+    --card: 0 0% 100%;
+    --card-foreground: 218 35% 12%;
+    --primary: 158 64% 42%;
+    --primary-foreground: 158 70% 8%;
+    --secondary: 214 24% 92%;
+    --muted: 214 24% 92%;
+    --muted-foreground: 215 14% 43%;
+    --border: 214 24% 86%;
+    --destructive: 0 72% 54%;
+  }
+
+  .dark {
+    --background: 218 64% 7%;
+    --foreground: 210 40% 96%;
+    --card: 216 47% 10%;
+    --card-foreground: 210 40% 96%;
+    --primary: 158 64% 52%;
+    --primary-foreground: 158 82% 8%;
+    --secondary: 215 35% 15%;
+    --muted: 215 35% 14%;
+    --muted-foreground: 215 18% 65%;
+    --border: 215 30% 18%;
+    --destructive: 0 65% 52%;
+  }
+
+  * { @apply border-border; }
+  html { @apply antialiased; }
+  body { @apply min-h-screen bg-background text-foreground; }
+  button, a, input, select, textarea { @apply outline-none; }
+  :focus-visible { @apply ring-2 ring-primary ring-offset-2 ring-offset-background; }
+}
+
+@layer components {
+  .glass-card { @apply rounded-2xl border bg-card/90 shadow-panel backdrop-blur-sm; }
+  .page-grid { @apply grid gap-4 md:gap-5; }
+  .safe-bottom { padding-bottom: max(1rem, env(safe-area-inset-bottom)); }
+  .scrollbar-thin { scrollbar-width: thin; scrollbar-color: hsl(var(--border)) transparent; }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .animate-enter { animation: enter .35s ease-out both; }
+  @keyframes enter { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+}
